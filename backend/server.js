@@ -21,6 +21,10 @@ app.get('/experiencias', (req, res) => {
   ]);
 });
 
+// Rotas
+const experienciasRoutes = require('./routes/experiencias');
+app.use('/experiencias', experienciasRoutes);
+
 // Inicializando servidor
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
