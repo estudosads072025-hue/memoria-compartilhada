@@ -8,24 +8,24 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Rota de teste da API
+// ------------ Rotas Importadas ------------
+const experienciasRoutes = require('./routes/experiencias');
+const usuariosRoutes = require('./routes/usuarios');
+const guiasRoutes = require('./routes/guias');
+const reservasRoutes = require('./routes/reservas');
+
+// ------------ Conectando Rotas ------------
+app.use('/experiencias', experienciasRoutes);
+app.use('/usuarios', usuariosRoutes);
+app.use('/guias', guiasRoutes);
+app.use('/reservas', reservasRoutes);
+
+// ------------ Rota básica para testar ------------
 app.get('/', (req, res) => {
   res.json({ message: "API Memória Compartilhada funcionando!" });
 });
 
-// Rota inicial de experiências (exemplo)
-app.get('/experiencias', (req, res) => {
-  res.json([
-    { id: 1, titulo: "História do Pelourinho", guia: "Maria", preco: 120 },
-    { id: 2, titulo: "Culinária do Subúrbio", guia: "João", preco: 150 }
-  ]);
-});
-
-// Rotas
-const experienciasRoutes = require('./routes/experiencias');
-app.use('/experiencias', experienciasRoutes);
-
-// Inicializando servidor
+// ------------ Inicializando Servidor ------------
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
